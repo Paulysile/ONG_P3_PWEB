@@ -27,7 +27,7 @@ new Vue({
 
             let country_code = this.selected_breed.country_code.toLowerCase();
 
-            this.country_flag_url = `https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/flags/1x1/${country_code}.svg`;
+            this.country_flag_url = 'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/flags/1x1/${country_code}.svg';
             this.getImages();
         }
     },
