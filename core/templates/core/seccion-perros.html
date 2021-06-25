@@ -1,76 +1,170 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        {% load static %}
-        <title>ONG Ayuda a un peludo - Perros</title>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" href="img/favicon.ico" type="image/x-icon">     
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script src="{% static 'core/js/galeria-imagenes.js' %}"></script>
-        <script src="{% static 'core/js/seccion-perros.js' %}"></script>
-    </head>
-    <body>
-        <div class="container bg-light d-flex flex-column sticky-footer-wrapper min-vh-100">
-            
-            <header class="jumbotron">
-                
-                <h1 class="text-center">
-                    <img src="{% static 'core/img/logo.png' %}"  class="rounded-circle" alt="logo"/>
-                    <span class="text-nowrap">ONG Ayuda a un Peludo</span>
-                </h1>
-                <p class="text-justify">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
-                    Aliquam repellat earum fuga? Nihil adipisci in ut labore nobis,
-                    earum eos possimus ex eum eveniet delectus suscipit mollitia perspiciatis, 
-                    repellat vitae!
-                </p>
-            </header>
 
-            <nav class="navbar navbar-expand-md bg-light">
-                
-                <a class="navbar-brand" href="#">
-                    <img src="{% static 'core/img/logo.png' %}"  class="rounded-circle" width="80" alt="Logo" />
-                </a>
+<head>
+    {% load static %}
+    <title>ONG Ayuda a un peludo - Perros</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 
-                <!-- Links -->
-                <ul class="navbar-nav">
-                    <li class="nav-item">
+    <link rel="icon" href="{% static 'core/img/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <div class="container bg-light d-flex flex-column sticky-footer-wrapper min-vh-100">
+        <header class="jumbotron">
+
+            <h1 class="text-center">
+                <img src="{% static 'core/img/logo.png' %}" class="rounded-circle" alt="logo" />
+                <span class="text-nowrap">ONG Ayuda a un Peludo</span>
+            </h1>
+            <p class="text-justify">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Aliquam repellat earum fuga? Nihil adipisci in ut labore nobis,
+                earum eos possimus ex eum eveniet delectus suscipit mollitia perspiciatis,
+                repellat vitae!
+            </p>
+        </header>
+
+        <nav class="navbar navbar-expand-md bg-light">
+
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'core/img/logo.png' %}" class="rounded-circle" width="80" alt="Logo" />
+            </a>
+
+            <!-- Links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
                     <a class="nav-link" href="/">Inicio</a>
-                    </li>
+                </li>
 
-                    <!-- Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                            Mascotas
-                        </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item active" href="/seccion-perros">Perros</a>
-                            <a class="dropdown-item" href="/seccion-gatos">Gatos</a>
-                        </div>
-                    </li>
+                <!-- Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        Mascotas
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item active" href="/perros">Perros</a>
+                        <a class="dropdown-item" href="/gatos">Gatos</a>
+                    </div>
+                </li>
 
-                    <li class="nav-item">
-                        
-                        <a class="nav-link" href="/contacto">Contacto</a>
-                    </li>
-                </ul>
-            </nav>
+                <li class="nav-item">
 
-            <main class="flex-fill">
+                    <a class="nav-link" href="/contacto">Contacto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/formulario">Inicio Sesión</a>
+                </li>
+            </ul>
+        </nav>
+        <main class="flex-fill">
             <div class="row">
                 <div class="col-12">
                     <section>
                         <h2>
                             Perros
-                        </h2> 
+                        </h2>
 
-                        <table id="lista-perros" class="table text-center">
+                        <div id="app">
+                            <v-app>
+                                <v-content>
+                                    <v-container>
+                                        <v-layout align-center justify-center>                                        
+                                            <v-flex xs6>
+                                                <v-select 
+                                                    :items="breeds"label="Seleccione Raza"
+                                                    dense
+                                                    outlined 
+                                                    item-text="name" v-model="selected_breed"
+                                                    return-object attach
+                                                    >
+                                                </v-select>
+                                            </v-flex>
+                                        </v-layout>
+                                        
+                                        <v-layout>
+                                            <v-flex xs12 sm8 offset-sm2>
+                                                <v-card>
+                                                    <v-carousel>
+                                                        <v-carousel-item v-for="(item,i) in images" :key="i"
+                                                            :src="item.url"></v-carousel-item>
+                                                    </v-carousel>
 
-                        </table>
+                                                <div id="app">
+                                                    <v-app id="inspire">
+                                                        <v-expansion-panels>
+                                                            <v-expansion-panel>
+                                                                </br>
+                                                                <v-expansion-panel-header style="background-color:orange">
+                                                                    Ver Detalles
+                                                                </v-expansion-panel-header>
+                                                            <v-expansion-panel-content>
+                                                                <v-card-title primary-title>
+
+                                                                        <div class="text-xs-center">                                                                                                                        
+                                                                            <div>
+                                                                                </br>
+                                                                                <h3 class="headline mb-0"><strong>Nombre: </strong>{{selected_breed.name}}</h3>                                                            
+                                                                                </br>
+                                                                            </div>                                                                
+                                                                    </v-card-title>
+
+                                                                        <v-list>
+                                                                            <v-list-tile @click="">
+                                                                            <!--Detalles perro-->
+                                                                                <v-list-tile-content>
+                                                                                    <strong>Peso:</strong>
+                                                                                </v-list-tile-content>
+
+                                                                                <v-list-tile-action>
+                                                                                    <div>
+                                                                                        <i>{{selected_breed.weight.metric}} Kg</i>
+                                                                                    </div>
+
+                                                                                <v-list-tile-content>
+                                                                                    <strong>Altura:</strong>
+                                                                                </v-list-tile-content>
+
+                                                                                <v-list-tile-action>
+                                                                                    <div>
+                                                                                        <i>{{selected_breed.height.metric}} cm</i>
+                                                                                    </div>
+                                                                                <v-list-tile-content>
+                                                                                    <strong>Promedio esperanza de Vida:</strong>
+                                                                                </v-list-tile-content>
+
+                                                                                <v-list-tile-action>
+                                                                                    <div>
+                                                                                        <i>{{selected_breed.life_span}}</i>
+                                                                                    </div>
+                                                                                </br>                                                            
+                                                                            </v-list-tile>
+                                                                        </v-list>                                                    
+                                                                    </v-card>
+                                                                </v-expansion-panel-content>
+                                                            </v-expansion-panel>
+                                                        </v-expansion-panels>
+                                                    </v-app>
+                                                </div>
+                                            </v-flex>
+                                        </v-layout>
+                                    </v-container>
+                                </v-content>
+                            </v-app>
+                        </div>
                     </section>
                 </div>
             </div>
@@ -78,11 +172,15 @@
         <footer>
             <div class="row bg-dark">
                 <div class="col-12 text-center text-warning">
-                        Programación Web<br/>
-                        Instituto Profesional Duoc UC
+                    Programación Web<br />
+                    Instituto Profesional Duoc UC
                 </div>
             </div>
-        </footer>   
-        </div>
-    </body>
+        </footer>
+    </div>
+
+<script src="{% static 'core/js/seccion-gatos.js' %}"></script>
+<script src="{% static 'core/js/detalle.js' %}"></script>
+</body>
+
 </html>
