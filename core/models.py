@@ -1,13 +1,13 @@
+
 from django.db import models
 from rest_framework.fields import ReadOnlyField
-
 
 class Servicio(models.Model):
     idServicio= models.IntegerField(primary_key= True, verbose_name='Id de Servicio' )
     nombreServicio = models.CharField(max_length= 100, verbose_name= 'Servicio')
 
 
-    def _str_(self):
+    def __str__(self):
         return self.nombreServicio
 
 class Proveedores(models.Model):
@@ -19,6 +19,5 @@ class Proveedores(models.Model):
     servicio= models.ForeignKey(Servicio, on_delete=models.CASCADE)
     
 
-    def _str_(self):
+    def __str__(self):
         return self.rut
-
