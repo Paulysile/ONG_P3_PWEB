@@ -5,19 +5,21 @@
     {% load static %}
     <title>ONG Ayuda a un peludo - Gatos</title>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">    
-    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">    
+    
+    <!--Formato para el cuadro del detalle-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
-
+    
+    <link rel="stylesheet" href="{% static 'core/css/estilo.css' %}">
     <link rel="icon" href="{% static 'core/img/favicon.ico' %}" type="image/x-icon">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+   
 </head>
 
 <body>
@@ -63,10 +65,10 @@
 
                 <li class="nav-item">
 
-                    <a class="nav-link" href="/contacto">Contacto</a>
+                    <a class="nav-link" href="/contacto.html">Contacto</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/formulario">Inicio Sesión</a>
+                    <a class="nav-link" href="/formulario.html">Inicio Sesión</a>
                 </li>
                 <li class="nav-item">
 
@@ -90,8 +92,6 @@
                                             <v-flex xs6>
                                                 <v-select 
                                                     :items="breeds" label="Seleccione Raza"
-                                                    dense
-                                                    outlined
                                                     item-text="name" v-model="selected_breed"
                                                     return-object attach
                                                     >
@@ -105,65 +105,60 @@
                                                         <v-carousel>
                                                             <v-carousel-item 
                                                                 v-for="(item,i) in images" :key="i"
-                                                                :src="item.url"></v-carousel-item>
+                                                                :src="item.url">
+                                                            </v-carousel-item>
                                                         </v-carousel>
 
-                                                     <div id="appD">
-                                                         <v-app id="inspire">
-                                                            <v-expansion-panels>
-                                                                 <v-expansion-panel>
-                                                                     <br/>
-                                                                     <v-expansion-panel-header style="background-color:orange">
-                                                                         Ver Detalles
-                                                                </v-expansion-panel-header>
-                                                            <v-expansion-panel-content>
-                                                                <v-card-title primary-title>
-
-                                                                        <div class="text-xs-center">                                                                                                                        
-                                                                            <div>
-                                                                                </br>
-                                                                                <h3 class="headline mb-0"><strong>Nombre: </strong>{{selected_breed.name}}</h3>                                                            
-                                                                                </br>
-                                                                            </div>                                                                
-                                                                    </v-card-title>
-
-                                                                        <v-list>
-                                                                            <v-list-tile @click="">
-                                                                            <!--Detalles perro-->
-                                                                                <v-list-tile-content>
-                                                                                    <strong>Peso:</strong>
-                                                                                </v-list-tile-content>
-
-                                                                                <v-list-tile-action>
+                                                            <div id="appD">
+                                                                <v-app id="inspire">
+                                                                    <v-expansion-panels>
+                                                                        <v-expansion-panel>
+                                                                            <br/>
+                                                                                <v-expansion-panel-header style="background-color:orange">
+                                                                                    Ver Detalles
+                                                                                </v-expansion-panel-header>
+                                                                            <v-expansion-panel-content>
+                                                                                <v-card-title primary-title>                                                                                                                     
                                                                                     <div>
-                                                                                        <i>{{selected_breed.weight.metric}} Kg</i>
+                                                                                        <br/>
+                                                                                            <h3 class="headline mb-0"><strong>Nombre: </strong>{{selected_breed.name}}</h3>                                                            
+                                                                                        <br/>
                                                                                     </div>
+                                                                                </v-card-title>
+                                                                                    <v-list>
+                                                                                        <v-list-tile>
 
-                                                                                <v-list-tile-content>
-                                                                                    <strong>Altura:</strong>
-                                                                                </v-list-tile-content>
+                                                                                            <v-list-tile-content>
+                                                                                                <strong>Peso:</strong>
+                                                                                            </v-list-tile-content>
 
-                                                                                <v-list-tile-action>
-                                                                                    <div>
-                                                                                        <i>{{selected_breed.height.metric}} cm</i>
-                                                                                    </div>
-                                                                                <v-list-tile-content>
-                                                                                    <strong>Promedio esperanza de Vida:</strong>
-                                                                                </v-list-tile-content>
+                                                                                            <v-list-tile-action>
+                                                                                                <div>
+                                                                                                    <i>{{selected_breed.weight.metric}} Kg</i>
+                                                                                                </div>
+                                                                                            </v-list-tile-action>
+                                                                                            <v-list-tile-content>
+                                                                                                <strong>Promedio esperanza de Vida:</strong>
+                                                                                            </v-list-tile-content>
 
-                                                                                <v-list-tile-action>
-                                                                                    <div>
-                                                                                        <i>{{selected_breed.life_span}}</i>
-                                                                                    </div>
-                                                                                </br>                                                            
-                                                                            </v-list-tile>
-                                                                        </v-list>                                                    
-                                                                    </v-card>
-                                                                </v-expansion-panel-content>
-                                                            </v-expansion-panel>
-                                                        </v-expansion-panels>
-                                                    </v-app>
-                                                </div>
+                                                                                            <v-list-tile-action>
+                                                                                                <div>
+                                                                                                    <i>{{selected_breed.life_span}} años</i>
+                                                                                                </div>
+                                                                                                    <br/>
+                                                                                            </v-list-tile-action>                                                           
+                                                                                        </v-list-tile>                                                         
+
+                                                                                    </v-list>
+                                                                                        <v-card-actions>
+                                                                                            <v-btn :href="selected_breed.wikipedia_url" target="_blank" flat color="orange">Sitio Wikipedia</v-btn>
+                                                                                        </v-card-actions>
+                                                    </v-card>
+                                                                            </v-expansion-panel-content>
+                                                                        </v-expansion-panel>
+                                                                    </v-expansion-panels>
+                                                                </v-app>
+                                                            </div>
                                             </v-flex>
                                         </v-layout>
                                     </v-container>
@@ -183,7 +178,6 @@
             </div>
         </footer>
     </div>
-
 <script src="{% static 'core/js/seccion-gatos.js' %}"></script>
 <script src="{% static 'core/js/detalle.js' %}"></script>
 

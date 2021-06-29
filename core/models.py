@@ -1,3 +1,4 @@
+
 from django.db import models
 from rest_framework.fields import ReadOnlyField
 
@@ -20,3 +21,15 @@ class Proveedores(models.Model):
 
     def __str__(self):
         return self.rut
+
+from django import forms
+from django.forms import ModelForm
+from .models import Proveedores
+
+class ProveedorForm(forms.ModelForm):
+    class Meta:
+        model= Proveedores
+        fields= ['rut','razonsocial','descripcion','telefono','email', 'servicio']
+
+        
+
