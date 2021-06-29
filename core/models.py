@@ -1,3 +1,10 @@
-from django.db import models
+from django import forms
+from django.forms import ModelForm
+from .models import Proveedores
 
-# Create your models here.
+class ProveedorForm(forms.ModelForm):
+    class Meta:
+        model= Proveedores
+        fields= ['rut','razonsocial','descripcion','telefono','email', 'servicio']
+
+        
