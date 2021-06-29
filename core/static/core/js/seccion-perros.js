@@ -16,7 +16,7 @@ new Vue({
         selected_breed: function () {
             console.log(this.selected_breed)
 
-            let country_code = this.selected_breed.country_code.toLowerCase();
+            
 
             this.country_flag_url = 'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/flags/1x1/${country_code}.svg';
             this.getImages();
@@ -26,7 +26,7 @@ new Vue({
 
         async getBreeds() {
             try {
-                axios.defaults.headers.common['x-api-key'] = "DEMO-API-KEY" // Replace this with your API Key, as it's set to defaults it will be used from now onwards
+                axios.defaults.headers.common['x-api-key'] = "core" // Replace this with your API Key, as it's set to defaults it will be used from now onwards
 
                 let response = await axios.get('https://api.thedogapi.com/v1/breeds/')
                 this.breeds = response.data;
@@ -42,10 +42,9 @@ new Vue({
             try {
 
                 let query_params = {
-                    breed_ids: this.selected_breed.id,
-                    limit: 8
+                    breed_id: this.selected_breed.id
                 }
-
+                console.log (this.selected_breed.id);
                 let response = await axios.get('https://api.thedogapi.com/v1/images/search', { params: query_params })
 
                 this.pagination_count = response.headers['pagination-count'];
